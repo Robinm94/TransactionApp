@@ -20,18 +20,20 @@ namespace Transaction_App
         {
             InitializeComponent();
             datelTrnsatnDate.MaxDate = DateTime.Now.AddDays(7);
-            numTrnsatnAmnt.Maximum = (decimal)maxAmount;
+            
             if (transactionHistoryToBeUpdated != null)
             {
                 this.newTransactionHistory = transactionHistoryToBeUpdated;
                 this.Text = "Update Transaction";
                 btnAddUpdate.Text = "&Update";
+                numTrnsatnAmnt.Maximum = (decimal)maxAmount + (decimal)transactionHistoryToBeUpdated.Amount!;
                 txtTrnsatnDscrptn.Text = transactionHistoryToBeUpdated.Description;
                 numTrnsatnAmnt.Value = (decimal)transactionHistoryToBeUpdated.Amount!;
                 datelTrnsatnDate.Value = (DateTime)transactionHistoryToBeUpdated.TransactionDate!;
             }
             else
             {
+                numTrnsatnAmnt.Maximum = (decimal)maxAmount;
                 this.Text = "Add Transaction";
                 btnAddUpdate.Text = "&Add";
             }
